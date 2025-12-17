@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { Star, ShoppingCart } from 'lucide-react'
 import { Playfair_Display, Inter } from 'next/font/google'
 import { Product, useCartStore } from '@/store/cartStore'
+import { formatPrice } from '@/utils/formatPrice'
 
 const playfair = Playfair_Display({ subsets: ['latin'] })
 const inter = Inter({ subsets: ['latin'] })
@@ -109,7 +110,7 @@ export default function ProductCard({ product, index }: ProductCardProps) {
               {/* Price and Add to Cart with 3D positioning */}
               <div className="flex items-center justify-between pt-2 transform-gpu group-hover:translate-z-[5px] transition-transform duration-500">
                 <span className={`${playfair.className} text-2xl font-bold bg-gradient-to-r from-[#f5c542] to-[#ffd700] bg-clip-text text-transparent`}>
-                  ₹{product.price.toLocaleString()}
+                  ₹{formatPrice(product.price)}
                 </span>
                 
                 {/* Add to Cart Button with 3D hover */}

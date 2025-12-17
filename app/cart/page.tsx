@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Minus, Plus, Trash2, ShoppingBag } from 'lucide-react'
 import { useCartStore } from '@/store/cartStore'
+import { formatPrice } from '@/utils/formatPrice'
 
 export default function CartPage() {
   const { items, updateQuantity, removeItem, getTotalPrice, clearCart } = useCartStore()
@@ -86,7 +87,7 @@ export default function CartPage() {
                       
                       <div className="flex items-center gap-4">
                         <span className="text-xl font-bold text-gradient">
-                          ₹{(item.price * item.quantity).toLocaleString()}
+                          ₹{formatPrice(item.price * item.quantity)}
                         </span>
                         
                         <button
@@ -115,7 +116,7 @@ export default function CartPage() {
             <div className="space-y-4 mb-6">
               <div className="flex justify-between text-gray-400">
                 <span>Subtotal</span>
-                <span>₹{getTotalPrice().toLocaleString()}</span>
+                <span>₹{formatPrice(getTotalPrice())}</span>
               </div>
               <div className="flex justify-between text-gray-400">
                 <span>Shipping</span>
@@ -123,13 +124,13 @@ export default function CartPage() {
               </div>
               <div className="flex justify-between text-gray-400">
                 <span>Tax</span>
-                <span>₹{Math.round(getTotalPrice() * 0.18).toLocaleString()}</span>
+                <span>₹{formatPrice(Math.round(getTotalPrice() * 0.18))}</span>
               </div>
               <div className="border-t border-white/10 pt-4">
                 <div className="flex justify-between text-xl font-bold text-white">
                   <span>Total</span>
                   <span className="text-gradient">
-                    ₹{Math.round(getTotalPrice() * 1.18).toLocaleString()}
+                    ₹{formatPrice(Math.round(getTotalPrice() * 1.18))}
                   </span>
                 </div>
               </div>
